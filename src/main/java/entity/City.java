@@ -10,10 +10,10 @@ public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String name;
     private String district;
-    private int population;
+    private Integer population;
 
     @ManyToOne
     @JoinColumn(name = "code")
@@ -22,17 +22,17 @@ public class City {
     public City() {
     }
 
-    public City(String name, String district, int population) {
+    public City(String name, String district, Integer population) {
         this.name = name;
         this.district = district;
         this.population = population;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -60,11 +60,11 @@ public class City {
         this.district = district;
     }
 
-    public int getPopulation() {
+    public Integer getPopulation() {
         return population;
     }
 
-    public void setPopulation(int population) {
+    public void setPopulation(Integer population) {
         this.population = population;
     }
 
@@ -87,7 +87,7 @@ public class City {
                 (name == city.name || (name ==null && name.equals(getName()))) &&
                 (countryCode == city.countryCode || (countryCode == null && countryCode.equals(getCountryCode()))) &&
                 (district == city.district || (district == null && district.equals(getDistrict()))) &&
-                (population == city.population);
+                (population == city.population || (population != 0 && population.equals(getPopulation())));
     }
 
     @Override

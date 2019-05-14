@@ -7,11 +7,12 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
 
+        City city = new City();
         Session session = null;
         try{
             session = SessionFactoryUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.save(City);
+            session.save(city);
             session.getTransaction().commit();
         } catch (Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage(), "Error insert", JOptionPane.OK_CANCEL_OPTION);
@@ -20,6 +21,9 @@ public class Main {
                 session.close();
             }
         }
+
+        int id_city = 48;
+        SessionFactoryUtil.getSessionFactory().openSession().get(City.class, id_city);
 
 
     }

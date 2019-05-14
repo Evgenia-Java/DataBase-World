@@ -13,12 +13,12 @@ public class CountryLanguage {
     private String countryCode;
     private String language;
     private String isOfficial;  //ENUM
-    private float percentage;
+    private Float percentage;
 
     public CountryLanguage() {
     }
 
-    public CountryLanguage(String countryCode, String language, String isOfficial, float percentage) {
+    public CountryLanguage(String countryCode, String language, String isOfficial, Float percentage) {
         this.countryCode = countryCode;
         this.language = language;
         this.isOfficial = isOfficial;
@@ -41,7 +41,7 @@ public class CountryLanguage {
         this.language = language;
     }
 
-    public String isOfficial() {
+    public String getIsOfficial() {
         return isOfficial;
     }
 
@@ -49,11 +49,11 @@ public class CountryLanguage {
         isOfficial = official;
     }
 
-    public float getPercentage() {
+    public Float getPercentage() {
         return percentage;
     }
 
-    public void setPercentage(float percentage) {
+    public void setPercentage(Float percentage) {
         this.percentage = percentage;
     }
 
@@ -74,8 +74,8 @@ public class CountryLanguage {
         CountryLanguage countryLanguage = (CountryLanguage) object;
         return (countryCode == countryLanguage.countryCode || (countryCode != null && countryCode.equals(getCountryCode()))) &&
                 (language == countryLanguage.language || (language == null && language.equals(getLanguage()))) &&
-                (isOfficial == countryLanguage.isOfficial) &&                                         //???????????
-                (percentage == countryLanguage.percentage);
+                (isOfficial == countryLanguage.isOfficial || (isOfficial == null && isOfficial.equals(getIsOfficial()))) &&
+                (percentage == countryLanguage.percentage || (percentage == null && percentage.equals(getPercentage())));
     }
 
     @Override
@@ -85,7 +85,7 @@ public class CountryLanguage {
         result = prime * result + ((countryCode == null) ? 0 : countryCode.hashCode());
         result = prime * result + ((language == null)? 0 : language.hashCode());
         result = prime * result + ((isOfficial == null)? 0 : isOfficial.hashCode());
-        result = prime * result + (int)percentage;                                                    //??????????
+        result = prime * result + ((percentage == null) ? 0 : percentage.hashCode());
         return result;
     }
 

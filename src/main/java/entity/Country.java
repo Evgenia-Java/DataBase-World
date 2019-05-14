@@ -12,9 +12,9 @@ public class Country {
     private String name;
     private String continent; //TODO ENUM
     private String region;
-    private float surfaceArea;
+    private Float surfaceArea;
     private Integer indepYear;
-    private int population;
+    private Integer population;
     private Float lifeExpectancy;
     private Float GNP;
     private Float GNPOld;
@@ -27,7 +27,7 @@ public class Country {
     public Country() {
     }
 
-    public Country(String code, String name, String continent, String region, float surfaceArea, int indepYear, int population, float lifeExpectancy, float GNP, float GNPOld, String localName, String governmentForm, String headOfState, int capital, String code2) {
+    public Country(String code, String name, String continent, String region, Float surfaceArea, Integer indepYear, Integer population, Float lifeExpectancy, Float GNP, Float GNPOld, String localName, String governmentForm, String headOfState, Integer capital, String code2) {
         this.code = code;
         this.name = name;
         this.continent = continent;
@@ -77,51 +77,51 @@ public class Country {
         this.region = region;
     }
 
-    public float getSurfaceArea() {
+    public Float getSurfaceArea() {
         return surfaceArea;
     }
 
-    public void setSurfaceArea(float surfaceArea) {
+    public void setSurfaceArea(Float surfaceArea) {
         this.surfaceArea = surfaceArea;
     }
 
-    public int getIndepYear() {
+    public Integer getIndepYear() {
         return indepYear;
     }
 
-    public void setIndepYear(int indepYear) {
+    public void setIndepYear(Integer indepYear) {
         this.indepYear = indepYear;
     }
 
-    public int getPopulation() {
+    public Integer getPopulation() {
         return population;
     }
 
-    public void setPopulation(int population) {
+    public void setPopulation(Integer population) {
         this.population = population;
     }
 
-    public float getLifeExpectancy() {
+    public Float getLifeExpectancy() {
         return lifeExpectancy;
     }
 
-    public void setLifeExpectancy(float lifeExpectancy) {
+    public void setLifeExpectancy(Float lifeExpectancy) {
         this.lifeExpectancy = lifeExpectancy;
     }
 
-    public float getGNP() {
+    public Float getGNP() {
         return GNP;
     }
 
-    public void setGNP(float GNP) {
+    public void setGNP(Float GNP) {
         this.GNP = GNP;
     }
 
-    public float getGNPOld() {
+    public Float getGNPOld() {
         return GNPOld;
     }
 
-    public void setGNPOld(float GNPOld) {
+    public void setGNPOld(Float GNPOld) {
         this.GNPOld = GNPOld;
     }
 
@@ -149,11 +149,11 @@ public class Country {
         this.headOfState = headOfState;
     }
 
-    public int getCapital() {
+    public Integer getCapital() {
         return capital;
     }
 
-    public void setCapital(int capital) {
+    public void setCapital(Integer capital) {
         this.capital = capital;
     }
 
@@ -183,16 +183,16 @@ public class Country {
                 (name == country.name || (name != null) && name.equals(country.getName())) &&
                 (continent == country.continent || (continent != null && continent.equals(getContinent()))) &&
                 (region == country.region || (region != null && region.equals(getRegion()))) &&
-                (surfaceArea == country.surfaceArea) &&
+                (surfaceArea == country.surfaceArea || (surfaceArea != null && surfaceArea.equals(getSurfaceArea()))) &&
                 (indepYear == country.indepYear || (indepYear != null && indepYear.equals(getIndepYear()))) &&
-                (population == country.population) &&
-                (lifeExpectancy == country.lifeExpectancy) &&
-                (GNP == country.GNP) &&
-                (GNPOld == country.GNPOld) &&
+                (population == country.population || (population != null && population.equals(getPopulation()))) &&
+                (lifeExpectancy == country.lifeExpectancy || (lifeExpectancy != null && lifeExpectancy.equals(getLifeExpectancy()))) &&
+                (GNP == country.GNP || (GNP != null && GNP.equals(getGNP()))) &&
+                (GNPOld == country.GNPOld || (GNPOld != null && GNPOld.equals(getGNPOld()))) &&
                 (localName == country.localName || (localName != null && localName.equals(getLocalName()))) &&
                 (governmentForm == country.governmentForm || (governmentForm != null && governmentForm.equals(getGovernmentForm()))) &&
                 (headOfState == country.headOfState || (headOfState != null && headOfState.equals(getHeadOfState()))) &&
-                (capital == country.capital) &&
+                (capital == country.capital || (capital != null && capital.equals(getCapital()))) &&
                 (code2 == code2 || (code2 != null && code2.equals(getCode2())));
     }
 
@@ -204,9 +204,9 @@ public class Country {
         result = prime * result + ((name == null)?0:name.hashCode());
         result = prime * result + ((continent == null)?0:continent.hashCode());
         result = prime * result + ((region == null)?0:region.hashCode());
-        result = prime * result + (int)surfaceArea;                                  //???????
+        result = prime * result + ((surfaceArea == null) ? 0 : surfaceArea.hashCode());
         result = prime * result + ((indepYear == null)?0:indepYear.hashCode());
-        result = prime * result + population;
+        result = prime * result + ((population == null) ? 0 : population.hashCode());
         result = prime * result + ((lifeExpectancy == null)?0:lifeExpectancy.hashCode());
         result = prime * result + ((GNP == null)?0:GNP.hashCode());
         result = prime * result + ((GNPOld == null)?0:GNPOld.hashCode());
