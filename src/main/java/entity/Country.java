@@ -27,23 +27,23 @@ public class Country {
     public Country() {
     }
 
-    public Country(String code, String name, String continent, String region, Float surfaceArea, Integer indepYear, Integer population, Float lifeExpectancy, Float GNP, Float GNPOld, String localName, String governmentForm, String headOfState, Integer capital, String code2) {
-        this.code = code;
-        this.name = name;
-        this.continent = continent;
-        this.region = region;
-        this.surfaceArea = surfaceArea;
-        this.indepYear = indepYear;
-        this.population = population;
-        this.lifeExpectancy = lifeExpectancy;
-        this.GNP = GNP;
-        this.GNPOld = GNPOld;
-        this.localName = localName;
-        this.governmentForm = governmentForm;
-        this.headOfState = headOfState;
-        this.capital = capital;
-        this.code2 = code2;
-    }
+//    public Country(String code, String name, String continent, String region, Float surfaceArea, Integer indepYear, Integer population, Float lifeExpectancy, Float GNP, Float GNPOld, String localName, String governmentForm, String headOfState, Integer capital, String code2) {
+//        this.code = code;
+//        this.name = name;
+//        this.continent = continent;
+//        this.region = region;
+//        this.surfaceArea = surfaceArea;
+//        this.indepYear = indepYear;
+//        this.population = population;
+//        this.lifeExpectancy = lifeExpectancy;
+//        this.GNP = GNP;
+//        this.GNPOld = GNPOld;
+//        this.localName = localName;
+//        this.governmentForm = governmentForm;
+//        this.headOfState = headOfState;
+//        this.capital = capital;
+//        this.code2 = code2;
+//    }
 
     public String getCode() {
         return code;

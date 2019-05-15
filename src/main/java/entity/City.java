@@ -22,11 +22,11 @@ public class City {
     public City() {
     }
 
-    public City(String name, String district, Integer population) {
-        this.name = name;
-        this.district = district;
-        this.population = population;
-    }
+//    public City(String name, String district, Integer population) {
+//        this.name = name;
+//        this.district = district;
+//        this.population = population;
+//    }
 
     public Integer getId() {
         return id;

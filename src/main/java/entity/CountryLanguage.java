@@ -18,12 +18,12 @@ public class CountryLanguage {
     public CountryLanguage() {
     }
 
-    public CountryLanguage(String countryCode, String language, String isOfficial, Float percentage) {
-        this.countryCode = countryCode;
-        this.language = language;
-        this.isOfficial = isOfficial;
-        this.percentage = percentage;
-    }
+//    public CountryLanguage(String countryCode, String language, String isOfficial, Float percentage) {
+//        this.countryCode = countryCode;
+//        this.language = language;
+//        this.isOfficial = isOfficial;
+//        this.percentage = percentage;
+//    }
 
     public String getCountryCode() {
         return countryCode;
