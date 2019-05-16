@@ -1,30 +1,66 @@
-import entity.City;
+import by.belhard.hibernate.HibernateUtil;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.type.IntegerType;
+import org.hibernate.type.StringType;
 
-import javax.swing.*;
-
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
 
-        City city = new City();
         Session session = null;
+        Transaction transaction = null;
+
         try{
-            session = SessionFactoryUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-            session.save(city);
-            session.getTransaction().commit();
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+
+
+            // Native query selecting all columns
+//            List<Object[]> departments = session.createNativeQuery("SELECT * FROM department").list();
+//            for (Object[] objects : departments) {
+//                Integer id=(Integer)objects[0];
+//                String name=(String)objects[1];
+//                System.out.println("Department["+id+","+name+"]");
+//            }
+
+
+            //Native query with custom column selection (scaler query)
+//            System.out.println("--------------------------------------------------------------");
+//            List<Object[]> employees = session.createNativeQuery("SELECT * FROM employee")
+//                    .addScalar("emp_id", IntegerType.INSTANCE)
+//                    .addScalar( "name", StringType.INSTANCE )
+//                    .addScalar( "designation", StringType.INSTANCE )
+//                    .list();
+//            for (Object[] objects : employees) {
+//                Integer id=(Integer)objects[0];
+//                String name=(String)objects[1];
+//                String designation=(String)objects[2];
+//                System.out.println("Employee["+id+","+name+","+designation+"]");
+//            }
+
+
+            //Native query with JOIN
+            System.out.println("--------------------------------------------------------------");
+            List<Object[]> empDepts=session.createNativeQuery(""
+                    + "select e.name as emp_name, e.designation, d.name as dep_name "
+                    + "from DB2.employee e inner join DB2.department d "
+                    + "on e.dpt_id=d.dpt_id").list();
+            for (Object[] objects : empDepts) {
+                String employee=(String)objects[0];
+                String designation=(String)objects[1];
+                String department=(String)objects[2];
+                System.out.println("Employee["+employee+","+designation+","+department+"]");
+            }
+            transaction.commit();
         } catch (Exception e){
-            JOptionPane.showMessageDialog(null,e.getMessage(), "Error insert", JOptionPane.OK_CANCEL_OPTION);
+            e.printStackTrace();
         } finally {
-            if (session != null && session.isOpen()){
+            if (session != null ){
                 session.close();
             }
         }
-
-        int id_city = 48;
-        SessionFactoryUtil.getSessionFactory().openSession().get(City.class, id_city);
-
-
+        HibernateUtil.shutdown();
     }
 }
