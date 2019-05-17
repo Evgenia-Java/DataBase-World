@@ -1,29 +1,30 @@
 package by.belhard.hibernate.entity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Table(name = "DEPARTMENT")
 public class Department {
     @Id
-    @Column(name = "dpt_id")
-    private int id;
-
-    @Column(name = "name")
+    @Column(name = "DPT_ID")
+    private Integer id;
+    @Column(name = "Name")
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
-    private List<Employee>  employees = new ArrayList<Employee>();
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "department")
+    private List<Employee> employees = new ArrayList();
 
-    public int getId() {
+    public Department() {
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -47,14 +48,17 @@ public class Department {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Department department = (Department) o;
-        return id == department.id &&
-                Objects.equals(name, department.name) &&
-                Objects.equals(employees, department.employees);
+
+        Department that = (Department) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        return name != null ? name.equals(that.name) : that.name == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, employees);
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
     }
 }

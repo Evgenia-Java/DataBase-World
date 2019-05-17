@@ -1,31 +1,38 @@
 package by.belhard.hibernate.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+
+@NamedQueries(value = {
+        @NamedQuery(name = "getAllEmployees", query = "from Employee"),
+        @NamedQuery(name = "getEmployeeById", query = "from Employee where id = :id"),
+        @NamedQuery(name = "updateEmployeInformation", query = "update Employee set name = :name," +
+                "designation    = :designation, department = :dept " +
+                "where id = :id")
+})
+@Table(name = "employee")
 public class Employee {
+
     @Id
-    @Column(name = "emp_id")
-    private int id;
-
-    @Column(name = "name")
+    @Column(name = "EMP_ID")
+    private Integer id;
+    @Column(name = "NAME")
     private String name;
-
-    @Column(name = "designation")
+    @Column(name = "DESIGNATION")
     private String designation;
-
     @ManyToOne
-    @JoinColumn(name = "dpt_id")
+    @JoinColumn(name = "DPT_ID")
     private Department department;
 
-    public int getId() {
+    public Employee(){}
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -57,15 +64,22 @@ public class Employee {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Employee employee = (Employee) o;
-        return id == employee.id &&
-                Objects.equals(name, employee.name) &&
-                Objects.equals(designation, employee.designation) &&
-                Objects.equals(department, employee.department);
+
+        if (id != null ? !id.equals(employee.id) : employee.id != null) return false;
+        if (name != null ? !name.equals(employee.name) : employee.name != null) return false;
+        if (designation != null ? !designation.equals(employee.designation) : employee.designation != null)
+            return false;
+        return department != null ? department.equals(employee.department) : employee.department == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, designation, department);
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (designation != null ? designation.hashCode() : 0);
+        result = 31 * result + (department != null ? department.hashCode() : 0);
+        return result;
     }
 }

@@ -17,17 +17,16 @@ public class HibernateUtil {
     private static SessionFactory sessionFactory;
 
     public static SessionFactory getSessionFactory(){
-        if (sessionFactory == null){
-            try {
+        if(sessionFactory==null){
+            try{
                 StandardServiceRegistryBuilder registryBuilder = new StandardServiceRegistryBuilder();
-
-                Map<String, Object> settings = new HashMap<String, Object>();
-                settings.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
-                settings.put(Environment.URL, "jdbc:mysql://localhost:3306?useSSL=false");
-                settings.put(Environment.USER, "root");
-                settings.put(Environment.PASS, "12345678");
-                settings.put(Environment.HBM2DDL_AUTO, "validate");
-                settings.put(Environment.SHOW_SQL, true);
+                Map<String,Object> settings = new HashMap();
+                settings.put(Environment.DRIVER,"com.mysql.jdbc.Driver");
+                settings.put(Environment.URL,"jdbc:mysql://localhost:3306/DB2?useSSL=false");
+                settings.put(Environment.USER,"root");
+                settings.put(Environment.PASS,"12345678");
+                settings.put(Environment.HBM2DDL_AUTO,"validate");
+                settings.put(Environment.SHOW_SQL,true);
 
                 registryBuilder.applySettings(settings);
                 registry = registryBuilder.build();
@@ -38,19 +37,19 @@ public class HibernateUtil {
                 Metadata metadata = sources.getMetadataBuilder().build();
 
                 sessionFactory = metadata.getSessionFactoryBuilder().build();
-            } catch (Exception e){
-                if (registry != null){
+
+            }catch(Exception e){
+                if(registry!=null){
                     StandardServiceRegistryBuilder.destroy(registry);
                 }
                 e.printStackTrace();
             }
-        }
-        return sessionFactory;
+        }return sessionFactory;
     }
-
     public static void shutdown(){
-        if (registry != null) {
+        if(registry!=null){
             StandardServiceRegistryBuilder.destroy(registry);
         }
     }
 }
+
